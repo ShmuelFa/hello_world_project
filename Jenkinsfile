@@ -35,7 +35,8 @@ pipeline {
                         python3 -m venv venv
                         . venv/bin/activate
                         pip install --no-cache-dir -r requirements.txt
-                        python -m pytest test_app.py -v || python -m unittest test_app.py -v
+                        pip install --no-cache-dir pytest
+                        python -m pytest test_app.py -v
                     '''
                 }
             }

@@ -2,3 +2,5 @@ app/venv/
 *.tar
 __pycache__/
 *.pyc
+admin.conf
+*.conf

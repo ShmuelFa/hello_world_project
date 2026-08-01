@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         // ---- Update these to match your environment ----
-        DOCKERHUB_USER   = 'your-dockerhub-username'
+        DOCKERHUB_USER   = 'shmuelfa'
         IMAGE_NAME       = 'hello-world'
         IMAGE_TAG        = "v${BUILD_NUMBER}"
         FULL_IMAGE       = "${DOCKERHUB_USER}/${IMAGE_NAME}:${IMAGE_TAG}"

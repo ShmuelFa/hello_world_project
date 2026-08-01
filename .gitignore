@@ -1,0 +1,4 @@
+app/venv/
+*.tar
+__pycache__/
+*.pyc

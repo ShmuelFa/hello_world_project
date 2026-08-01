@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: hello-world
-          image: IMAGE_PLACEHOLDER   # replaced by Jenkins with <dockerhub-user>/hello-world:vX
+          image: shmuelfa/hello-world:v1   # replaced by Jenkins with <dockerhub-user>/hello-world:vX
           ports:
             - containerPort: 5000
           resources:

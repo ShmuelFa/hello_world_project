@@ -17,6 +17,11 @@ COPY app/ .
 
 # Create a non-root user for security
 RUN addgroup --system appgroup && adduser --system --ingroup appgroup appuser
+
+# Ensure app files are readable/owned by the non-root user
+# (guards against restrictive permissions from some host filesystems/mounts)
+RUN chown -R appuser:appgroup /app && chmod -R u+rX /app
+
 USER appuser
 
 EXPOSE 5000

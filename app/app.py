@@ -1,5 +1,4 @@
 from flask import Flask, jsonify
-import socket
 import os
 
 app = Flask(__name__)
@@ -12,8 +11,6 @@ def hello_world():
         <head><title>Hello World - DevOps Pipeline</title></head>
         <body style="font-family: sans-serif; text-align: center; margin-top: 100px;">
             <h1>Hello World</h1>
-            <p>Served by pod: {socket.gethostname()}</p>
-            <p>Version: {os.environ.get('APP_VERSION', 'v1')}</p>
         </body>
     </html>
     """

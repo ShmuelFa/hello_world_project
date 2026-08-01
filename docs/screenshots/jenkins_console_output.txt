@@ -1,0 +1,308 @@
+Started by user unknown or anonymous
+Obtained Jenkinsfile from git https://github.com/ShmuelFa/hello_world_project.git
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins
+ in /var/lib/jenkins/workspace/hello-world-pipeline
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Checkout SCM)
+[Pipeline] checkout
+Selected Git installation does not exist. Using Default
+The recommended git tool is: NONE
+No credentials specified
+ > git rev-parse --resolve-git-dir /var/lib/jenkins/workspace/hello-world-pipeline/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/ShmuelFa/hello_world_project.git # timeout=10
+Fetching upstream changes from https://github.com/ShmuelFa/hello_world_project.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.51.0'
+ > git fetch --tags --force --progress -- https://github.com/ShmuelFa/hello_world_project.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/main^{commit} # timeout=10
+Checking out Revision 2943f6eb54204435822da929780e91939057b7ae (refs/remotes/origin/main)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 2943f6eb54204435822da929780e91939057b7ae # timeout=10
+Commit message: "Restore IMAGE_PLACEHOLDER for Jenkins substitution"
+ > git rev-list --no-walk 90892422fbe9ae4ce4b0ac6b0a6e327f9418320a # timeout=10
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] withCredentials
+Masking supported pattern matches of $DOCKERHUB_CREDS or $DOCKERHUB_CREDS_PSW or $KUBECONFIG_CRED
+[Pipeline] {
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] timestamps
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Clone Repository)
+[Pipeline] echo
+16:56:54  Cloning https://github.com/ShmuelFa/hello_world_project.git (main)
+[Pipeline] git
+16:56:54  Selected Git installation does not exist. Using Default
+16:56:54  The recommended git tool is: NONE
+16:56:54  No credentials specified
+16:56:54   > git rev-parse --resolve-git-dir /var/lib/jenkins/workspace/hello-world-pipeline/.git # timeout=10
+16:56:54  Fetching changes from the remote Git repository
+16:56:54   > git config remote.origin.url https://github.com/ShmuelFa/hello_world_project.git # timeout=10
+16:56:54  Fetching upstream changes from https://github.com/ShmuelFa/hello_world_project.git
+16:56:54   > git --version # timeout=10
+16:56:54   > git --version # 'git version 2.51.0'
+16:56:54   > git fetch --tags --force --progress -- https://github.com/ShmuelFa/hello_world_project.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+16:56:55   > git rev-parse refs/remotes/origin/main^{commit} # timeout=10
+16:56:55  Checking out Revision 2943f6eb54204435822da929780e91939057b7ae (refs/remotes/origin/main)
+16:56:55   > git config core.sparsecheckout # timeout=10
+16:56:55   > git checkout -f 2943f6eb54204435822da929780e91939057b7ae # timeout=10
+16:56:55   > git branch -a -v --no-abbrev # timeout=10
+16:56:55   > git branch -D main # timeout=10
+16:56:55   > git checkout -b main 2943f6eb54204435822da929780e91939057b7ae # timeout=10
+16:56:55  Commit message: "Restore IMAGE_PLACEHOLDER for Jenkins substitution"
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Build Application)
+[Pipeline] dir
+16:56:55  Running in /var/lib/jenkins/workspace/hello-world-pipeline/app
+[Pipeline] {
+[Pipeline] sh
+16:56:56  + python3 -m venv venv
+16:57:00  + . venv/bin/activate
+16:57:00  + deactivate nondestructive
+16:57:00  + [ -n  ]
+16:57:00  + [ -n  ]
+16:57:00  + hash -r
+16:57:00  + [ -n  ]
+16:57:00  + unset VIRTUAL_ENV
+16:57:00  + unset VIRTUAL_ENV_PROMPT
+16:57:00  + [ ! nondestructive = nondestructive ]
+16:57:00  + uname
+16:57:00  + export VIRTUAL_ENV=/var/lib/jenkins/workspace/hello-world-pipeline/app/venv
+16:57:00  + _OLD_VIRTUAL_PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin
+16:57:00  + PATH=/var/lib/jenkins/workspace/hello-world-pipeline/app/venv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin
+16:57:00  + export PATH
+16:57:00  + VIRTUAL_ENV_PROMPT=venv
+16:57:00  + export VIRTUAL_ENV_PROMPT
+16:57:00  + [ -n  ]
+16:57:00  + [ -z  ]
+16:57:00  + _OLD_VIRTUAL_PS1=$ 
+16:57:00  + PS1=(venv) $ 
+16:57:00  + export PS1
+16:57:00  + hash -r
+16:57:00  + pip install --no-cache-dir -r requirements.txt
+16:57:02  Requirement already satisfied: Flask==3.0.3 in ./venv/lib/python3.13/site-packages (from -r requirements.txt (line 1)) (3.0.3)
+16:57:02  Requirement already satisfied: gunicorn==22.0.0 in ./venv/lib/python3.13/site-packages (from -r requirements.txt (line 2)) (22.0.0)
+16:57:02  Requirement already satisfied: Werkzeug>=3.0.0 in ./venv/lib/python3.13/site-packages (from Flask==3.0.3->-r requirements.txt (line 1)) (3.1.8)
+16:57:02  Requirement already satisfied: Jinja2>=3.1.2 in ./venv/lib/python3.13/site-packages (from Flask==3.0.3->-r requirements.txt (line 1)) (3.1.6)
+16:57:02  Requirement already satisfied: itsdangerous>=2.1.2 in ./venv/lib/python3.13/site-packages (from Flask==3.0.3->-r requirements.txt (line 1)) (2.2.0)
+16:57:02  Requirement already satisfied: click>=8.1.3 in ./venv/lib/python3.13/site-packages (from Flask==3.0.3->-r requirements.txt (line 1)) (8.4.2)
+16:57:02  Requirement already satisfied: blinker>=1.6.2 in ./venv/lib/python3.13/site-packages (from Flask==3.0.3->-r requirements.txt (line 1)) (1.9.0)
+16:57:02  Requirement already satisfied: packaging in ./venv/lib/python3.13/site-packages (from gunicorn==22.0.0->-r requirements.txt (line 2)) (26.2)
+16:57:02  Requirement already satisfied: MarkupSafe>=2.0 in ./venv/lib/python3.13/site-packages (from Jinja2>=3.1.2->Flask==3.0.3->-r requirements.txt (line 1)) (3.0.3)
+16:57:02  + pip install --no-cache-dir pytest
+16:57:02  Requirement already satisfied: pytest in ./venv/lib/python3.13/site-packages (9.1.1)
+16:57:02  Requirement already satisfied: iniconfig>=1.0.1 in ./venv/lib/python3.13/site-packages (from pytest) (2.3.0)
+16:57:02  Requirement already satisfied: packaging>=22 in ./venv/lib/python3.13/site-packages (from pytest) (26.2)
+16:57:02  Requirement already satisfied: pluggy<2,>=1.5 in ./venv/lib/python3.13/site-packages (from pytest) (1.6.0)
+16:57:02  Requirement already satisfied: pygments>=2.7.2 in ./venv/lib/python3.13/site-packages (from pytest) (2.20.0)
+16:57:02  + python -m pytest test_app.py -v
+16:57:04  ============================= test session starts ==============================
+16:57:04  platform linux -- Python 3.13.7, pytest-9.1.1, pluggy-1.6.0 -- /var/lib/jenkins/workspace/hello-world-pipeline/app/venv/bin/python
+16:57:04  cachedir: .pytest_cache
+16:57:04  rootdir: /var/lib/jenkins/workspace/hello-world-pipeline/app
+16:57:05  collecting ... collected 3 items
+16:57:05  
+16:57:05  test_app.py::HelloWorldTestCase::test_health_endpoint PASSED             [ 33%]
+16:57:05  test_app.py::HelloWorldTestCase::test_hello_world_content PASSED         [ 66%]
+16:57:05  test_app.py::HelloWorldTestCase::test_hello_world_status_code PASSED     [100%]
+16:57:05  
+16:57:05  ============================== 3 passed in 1.30s ===============================
+[Pipeline] }
+[Pipeline] // dir
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Build Docker Image)
+[Pipeline] script
+[Pipeline] {
+[Pipeline] sh
+16:57:06  + docker build -t shmuelfa/hello-world:v19 -t shmuelfa/hello-world:latest .
+16:57:07  #0 building with "default" instance using docker driver
+16:57:07  
+16:57:07  #1 [internal] load build definition from Dockerfile
+16:57:07  #1 transferring dockerfile: 1.02kB 0.1s done
+16:57:07  #1 DONE 0.1s
+16:57:07  
+16:57:07  #2 [internal] load metadata for docker.io/library/python:3.12-slim
+16:57:09  #2 DONE 1.3s
+16:57:09  
+16:57:09  #3 [internal] load .dockerignore
+16:57:09  #3 transferring context: 2B done
+16:57:09  #3 DONE 0.0s
+16:57:09  
+16:57:09  #4 [1/7] FROM docker.io/library/python:3.12-slim@sha256:57cd7c3a7a273101a6485ba99423ee568157882804b1124b4dd04266317710de
+16:57:09  #4 DONE 0.0s
+16:57:09  
+16:57:09  #5 [internal] load build context
+16:57:09  #5 transferring context: 241.38kB 0.2s done
+16:57:09  #5 DONE 0.3s
+16:57:09  
+16:57:09  #6 [2/7] WORKDIR /app
+16:57:09  #6 CACHED
+16:57:09  
+16:57:09  #7 [3/7] COPY app/requirements.txt .
+16:57:09  #7 CACHED
+16:57:09  
+16:57:09  #8 [4/7] RUN pip install --no-cache-dir -r requirements.txt
+16:57:09  #8 CACHED
+16:57:09  
+16:57:09  #9 [5/7] COPY app/ .
+16:57:09  #9 CACHED
+16:57:09  
+16:57:09  #10 [6/7] RUN addgroup --system appgroup && adduser --system --ingroup appgroup appuser
+16:57:09  #10 CACHED
+16:57:09  
+16:57:09  #11 [7/7] RUN chown -R appuser:appgroup /app && chmod -R u+rX /app
+16:57:09  #11 CACHED
+16:57:09  
+16:57:09  #12 exporting to image
+16:57:09  #12 exporting layers done
+16:57:09  #12 writing image sha256:fe9cf1388df45627a690dd3068187a7dce5c15500f151beccbbc3fbd0fe6d1fd 0.0s done
+16:57:09  #12 naming to docker.io/shmuelfa/hello-world:v19 0.1s done
+16:57:09  #12 naming to docker.io/shmuelfa/hello-world:latest
+16:57:09  #12 naming to docker.io/shmuelfa/hello-world:latest 0.0s done
+16:57:09  #12 DONE 0.1s
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Scan Image)
+[Pipeline] script
+[Pipeline] {
+[Pipeline] sh
+16:57:10  + trivy image --exit-code 0 --severity HIGH,CRITICAL shmuelfa/hello-world:v19
+16:57:10  /var/lib/jenkins/workspace/hello-world-pipeline@tmp/durable-19af637a/script.sh.copy: 1: trivy: not found
+16:57:10  + true
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Push to Docker Hub)
+[Pipeline] script
+[Pipeline] {
+[Pipeline] sh
+16:57:11  + echo ****
+16:57:11  + docker login -u shmuelfa --password-stdin
+16:57:12  
+16:57:12  WARNING! Your credentials are stored unencrypted in '/var/lib/jenkins/.docker/config.json'.
+16:57:12  Configure a credential helper to remove this warning. See
+16:57:12  https://docs.docker.com/go/credential-store/
+16:57:12  
+16:57:12  Login Succeeded
+16:57:12  + docker push shmuelfa/hello-world:v19
+16:57:12  The push refers to repository [docker.io/shmuelfa/hello-world]
+16:57:13  4be52140bef4: Preparing
+16:57:13  7b2c3f20bf5e: Preparing
+16:57:13  6fcb29a177fc: Preparing
+16:57:13  06cf00121675: Preparing
+16:57:13  7fc71847c142: Preparing
+16:57:13  ef89ef4c303f: Preparing
+16:57:13  b80f3ed1ee6d: Preparing
+16:57:13  83fdf57f71f2: Preparing
+16:57:13  ccbaccfc0388: Preparing
+16:57:13  f2ec4de84f55: Preparing
+16:57:13  ef89ef4c303f: Waiting
+16:57:13  b80f3ed1ee6d: Waiting
+16:57:13  83fdf57f71f2: Waiting
+16:57:13  ccbaccfc0388: Waiting
+16:57:13  f2ec4de84f55: Waiting
+16:57:14  06cf00121675: Layer already exists
+16:57:14  4be52140bef4: Layer already exists
+16:57:14  7fc71847c142: Layer already exists
+16:57:14  7b2c3f20bf5e: Layer already exists
+16:57:14  6fcb29a177fc: Layer already exists
+16:57:14  ccbaccfc0388: Layer already exists
+16:57:14  b80f3ed1ee6d: Layer already exists
+16:57:14  83fdf57f71f2: Layer already exists
+16:57:14  ef89ef4c303f: Layer already exists
+16:57:14  f2ec4de84f55: Layer already exists
+16:57:17  v19: digest: sha256:20f90298af64ac7a2c512d730ad075a26ba0898e1303063e4822d1d357c8af00 size: 2413
+16:57:17  + docker push shmuelfa/hello-world:latest
+16:57:17  The push refers to repository [docker.io/shmuelfa/hello-world]
+16:57:17  4be52140bef4: Preparing
+16:57:17  7b2c3f20bf5e: Preparing
+16:57:17  6fcb29a177fc: Preparing
+16:57:17  06cf00121675: Preparing
+16:57:17  7fc71847c142: Preparing
+16:57:17  ef89ef4c303f: Preparing
+16:57:17  b80f3ed1ee6d: Preparing
+16:57:17  83fdf57f71f2: Preparing
+16:57:17  ccbaccfc0388: Preparing
+16:57:17  f2ec4de84f55: Preparing
+16:57:17  ef89ef4c303f: Waiting
+16:57:17  b80f3ed1ee6d: Waiting
+16:57:17  83fdf57f71f2: Waiting
+16:57:17  ccbaccfc0388: Waiting
+16:57:17  f2ec4de84f55: Waiting
+16:57:18  7fc71847c142: Layer already exists
+16:57:18  7b2c3f20bf5e: Layer already exists
+16:57:18  06cf00121675: Layer already exists
+16:57:18  6fcb29a177fc: Layer already exists
+16:57:18  4be52140bef4: Layer already exists
+16:57:19  83fdf57f71f2: Layer already exists
+16:57:19  b80f3ed1ee6d: Layer already exists
+16:57:19  ef89ef4c303f: Layer already exists
+16:57:19  f2ec4de84f55: Layer already exists
+16:57:19  ccbaccfc0388: Layer already exists
+16:57:22  latest: digest: sha256:20f90298af64ac7a2c512d730ad075a26ba0898e1303063e4822d1d357c8af00 size: 2413
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Deploy to Kubernetes)
+[Pipeline] withEnv
+16:57:23  Warning: A secret was passed to "withEnv" using Groovy String interpolation, which is insecure.
+16:57:23  		 Affected argument(s) used the following variable(s): [KUBECONFIG_CRED]
+16:57:23  		 See https://jenkins.io/redirect/groovy-string-interpolation for details.
+[Pipeline] {
+[Pipeline] sh
+16:57:23  + sed -i s#IMAGE_PLACEHOLDER#shmuelfa/hello-world:v19#g k8s/deployment.yaml
+16:57:23  + kubectl apply -f k8s/deployment.yaml
+16:57:23  deployment.apps/hello-world-deployment configured
+16:57:23  + kubectl apply -f k8s/service.yaml
+16:57:24  service/hello-world-service unchanged
+16:57:24  + kubectl rollout status deployment/hello-world-deployment --timeout=120s
+16:57:25  Waiting for deployment "hello-world-deployment" rollout to finish: 1 out of 2 new replicas have been updated...
+16:57:46  Waiting for deployment "hello-world-deployment" rollout to finish: 1 out of 2 new replicas have been updated...
+16:57:46  Waiting for deployment "hello-world-deployment" rollout to finish: 1 out of 2 new replicas have been updated...
+16:57:46  Waiting for deployment "hello-world-deployment" rollout to finish: 1 old replicas are pending termination...
+16:58:08  Waiting for deployment "hello-world-deployment" rollout to finish: 1 old replicas are pending termination...
+16:58:08  deployment "hello-world-deployment" successfully rolled out
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Declarative: Post Actions)
+[Pipeline] sh
+16:58:09  + docker logout
+16:58:09  Removing login credentials for https://index.docker.io/v1/
+[Pipeline] echo
+16:58:09  Pipeline succeeded: shmuelfa/hello-world:v19 deployed to Kubernetes.
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // timestamps
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // withCredentials
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS

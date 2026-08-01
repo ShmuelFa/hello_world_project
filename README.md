@@ -129,16 +129,9 @@ kubectl apply -f k8s/service.yaml
 
 ## Jenkins Pipeline Screenshots
 
-> Add screenshots here after running the pipeline in your own Jenkins instance:
->
-> 1. **Pipeline overview** — stage view showing all green stages (Clone → Build → Docker Build → Scan → Push → Deploy).
-> 2. **Console output** — successful `docker push` and `kubectl rollout status` output.
-> 3. **Docker Hub** — the pushed image tag visible in your repository.
->
-> Example placeholders:
-> `docs/screenshots/pipeline-success.png`
-> `docs/screenshots/console-output.png`
-> `docs/screenshots/dockerhub-image.png`
+- **Pipeline overview / successful build:** `docs/screenshots/jenkins_build.jpg` — stage view showing all green stages (Clone → Build → Docker Build → Scan → Push → Deploy).
+- **Console output:** `docs/screenshots/jenkins_console_output.txt` — full log of a successful run, including `docker push` and `kubectl rollout status` confirming the rollout.
+- **Running pods:** `docs/screenshots/pods.jpg` — `kubectl get pods` output showing 2 replicas of `hello-world-deployment` in `Running` state after the pipeline's deploy stage.
 
 ---
 

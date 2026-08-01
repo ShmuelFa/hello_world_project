@@ -8,7 +8,7 @@ pipeline {
         IMAGE_TAG        = "v${BUILD_NUMBER}"
         FULL_IMAGE       = "${DOCKERHUB_USER}/${IMAGE_NAME}:${IMAGE_TAG}"
         LATEST_IMAGE     = "${DOCKERHUB_USER}/${IMAGE_NAME}:latest"
-        DOCKERHUB_CREDS  = credentials('dockerhub-credentials')   // Jenkins credential ID (username/password)
+        DOCKERHUB_CREDS  = credentials('docker-hub-credentials')   // Jenkins credential ID (username/password)
         KUBECONFIG_CRED  = credentials('kubeconfig-credentials')  // Jenkins "Secret file" credential ID
         GIT_REPO         = 'https://github.com/ShmuelFa/hello_world_project.git'
         GIT_BRANCH       = 'main'
